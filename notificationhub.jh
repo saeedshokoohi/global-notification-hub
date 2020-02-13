@@ -1,0 +1,66 @@
+
+entity NotificationAgentInfo
+{
+   id Long,
+   title String,
+   createDate ZonedDateTime
+   notificationType NotificationType,
+   notificationCenter NotificationCenter
+   username String,
+   password String,
+   customerId Long,
+   token String,
+   sender String,
+   status NotificationAgentStatus,
+   isDeleted Boolean,
+   description String,
+   agentConfig String,
+   
+}
+
+entity NotificationLog{
+id Long,
+createDate ZonedDateTime,
+consumerAppId Long,
+notificationSubject String,
+reciever String,
+customerId Long,
+traceCode String,
+status NotificationStatus,
+description String,
+body String,
+responseInfo String,
+requestInfo String
+}
+enum NotificationType {
+SMS, EMAIL, APP
+}
+enum NotificationCenter {
+    MELLIPAYAMAK, IRANSMS, SMS1000
+}
+enum NotificationAgentStatus {
+    ACTIVE, EXPIRED, DISABLED
+}
+enum NotificationStatus {
+    ACTIVE, FAILED, DONE 
+}
+
+relationship ManyToOne {
+	NotificationLog{notificationAgentInfo} to NotificationAgentInfo
+}
+
+
+
+
+
+// Set pagination options
+paginate * with infinite-scroll
+
+// Use Data Transfert Objects (DTO)
+ dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl 
+
+// Set an angular suffix
+ angularSuffix * with egh
