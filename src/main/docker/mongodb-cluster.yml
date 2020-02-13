@@ -1,0 +1,16 @@
+version: '2'
+services:
+  globalnotificationhub-mongodb:
+    image: mongo:4.0.16
+    ports:
+      - '27017:27017'
+    command: mongos --configdb globalnotificationhub-mongodb-config
+  globalnotificationhub-mongodb-node:
+    build:
+      context: .
+      dockerfile: mongodb/MongoDB.Dockerfile
+    command: mongod --replSet rs1 --noprealloc --smallfiles
+  globalnotificationhub-mongodb-config:
+    image: mongo:4.0.16
+    container_name: globalnotificationhub-mongodb-config
+    command: mongod --noprealloc --smallfiles --configsvr --dbpath /data/db

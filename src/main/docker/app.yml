@@ -1,0 +1,44 @@
+version: '2'
+services:
+  globalnotificationhub-app:
+    image: globalnotificationhub
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_CLOUD_CONSUL_PORT=8500
+      - SPRING_DATA_MONGODB_URI=mongodb://globalnotificationhub-mongodb:27017
+      - SPRING_DATA_MONGODB_DATABASE=GlobalNotificationHub
+      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+      - SPRING_DATA_JEST_URI=http://globalnotificationhub-elasticsearch:9200
+      - SPRING_ELASTICSEARCH_REST_URIS=http://globalnotificationhub-elasticsearch:9200
+      - KAFKA_BOOTSTRAPSERVERS=kafka:9092
+  globalnotificationhub-mongodb:
+    extends:
+      file: mongodb.yml
+      service: globalnotificationhub-mongodb
+  globalnotificationhub-elasticsearch:
+    extends:
+      file: elasticsearch.yml
+      service: globalnotificationhub-elasticsearch
+  kafka:
+    extends:
+      file: kafka.yml
+      service: kafka
+    environment:
+      - KAFKA_ADVERTISED_HOST_NAME=kafka
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+  zookeeper:
+    extends:
+      file: kafka.yml
+      service: zookeeper
+  consul:
+    extends:
+      file: consul.yml
+      service: consul
+
+  consul-config-loader:
+    extends:
+      file: consul.yml
+      service: consul-config-loader
