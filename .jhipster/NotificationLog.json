@@ -1,0 +1,71 @@
+{
+    "name": "NotificationLog",
+    "fields": [
+        {
+            "fieldName": "createDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "consumerAppId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "notificationSubject",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "reciever",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "customerId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "traceCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "NotificationStatus",
+            "fieldValues": "ACTIVE,FAILED,DONE"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "body",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "responseInfo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "requestInfo",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "notificationAgentInfo",
+            "otherEntityRelationshipName": "notificationLog",
+            "relationshipName": "notificationAgentInfo",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200213215400",
+    "entityTableName": "notification_log",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "GlobalNotificationHub",
+    "applications": "*",
+    "microserviceName": "GlobalNotificationHub",
+    "angularJSSuffix": "egh"
+}

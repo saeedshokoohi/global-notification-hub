@@ -1,0 +1,73 @@
+{
+    "name": "NotificationAgentInfo",
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "notificationType",
+            "fieldType": "NotificationType",
+            "fieldValues": "SMS,EMAIL,APP"
+        },
+        {
+            "fieldName": "notificationCenter",
+            "fieldType": "NotificationCenter",
+            "fieldValues": "MELLIPAYAMAK,IRANSMS,SMS1000"
+        },
+        {
+            "fieldName": "username",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "password",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "customerId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "token",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sender",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "NotificationAgentStatus",
+            "fieldValues": "ACTIVE,EXPIRED,DISABLED"
+        },
+        {
+            "fieldName": "isDeleted",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "agentConfig",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200213215300",
+    "entityTableName": "notification_agent_info",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "GlobalNotificationHub",
+    "applications": "*",
+    "microserviceName": "GlobalNotificationHub",
+    "angularJSSuffix": "egh"
+}
